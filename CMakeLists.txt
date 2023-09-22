@@ -1,8 +1,13 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required(VERSION 2.8)
 project(demo1_glfw)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+add_subdirectory(external/glfw)
 
+add_executable(gapp src/main.cpp)
 
-add_executable(gapp main.c)
-target_link_libraries(gapp glfw GLU GL pthread Xrandr Xi dl Xinerama rt dl X11)
+target_link_libraries(gapp glfw)
+find_package(OpenGL REQUIRED)
+target_link_libraries(gapp OpenGL::GL)
+
+include_directories(include/)
